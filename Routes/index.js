@@ -5,6 +5,7 @@ const usersController = require('../Controllers/usersController');
 const tagsController = require('../Controllers/tagsController');
 const jobController = require('../Controllers/jobController');
 const applicationController = require('../Controllers/applicationController');
+const contractController = require('../Controllers/contractController');
 
 // auth => logged in || register
 router.post('/users/auth', usersController.authUser);
@@ -31,6 +32,9 @@ router.get('/tags', tagsController.search);
 
 // apply for a job
 router.post('/apply', applicationController.apply);
+
+// Create Contract
+router.post('/contract/create', contractController.create);
 
 // TEST ADD TAG
 // router.post('/tag', tagsController.add);
