@@ -1,6 +1,6 @@
-const ton = require('../Ton/tonConnect');
-
+//const ton = require('../Ton/tonConnect');
 const Contract = require('../Models/contractModel');
+const CreateContract = require('../Ton/tonCreateContract.ts');
 
 class contractController{
     async create(req, res) {
@@ -13,6 +13,8 @@ class contractController{
             const contract_address = 'EQAq_yMMnSvml8HVgxWyRgilkg6okm_YkTEO1HPL74Oe5h8v';
             const funds = 0;
             const contract_status = 0;
+
+            const contractCreated = CreateContract(seller_wallet, buyer_wallet, disputeResolver_wallet, contract_price);
 
             // Convert unix epoc time to datetime
             const deployed_time = new Date(1678568563 * 1000);
@@ -59,7 +61,7 @@ class contractController{
       if (!contractId) return res.status(500).send({ err: 'err' });
 
       // Call testnet
-      
+      ton.Contract()
 
       console.log(contractId);
       res.status(200).send({ data: contractId });
