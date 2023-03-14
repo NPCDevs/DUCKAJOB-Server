@@ -45,8 +45,12 @@ class userController {
 
   async getUser(req, res) {
     const { userId } = req.params;
-    const user = await getUserById(userId);
-    return res.status(200).send({ user });
+    try {
+      const user = await getUserById(userId);
+      return res.status(200).send({ user });
+    } catch (error) {
+      return res.status(404).send({ user: null });
+    }
   }
 }
 
