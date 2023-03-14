@@ -9,11 +9,11 @@ class jobController {
     try {
       const newJob = await new Job({ title, description, budget });
       newJob.save();
-    } catch (error) {
-      console.log(error);
-    }
 
-    res.status(200).send({ msg: 'whateva' });
+      res.status(200).send({ success: true, redirectUrl: `/jobs/${newJob._id}` });
+    } catch (error) {
+      res.status(500).send({ success: false, redirectUrl: '' });
+    }
   }
   async getAll(req, res) {
     const jobs = await Job.find().exec(function (err, jobs) {
