@@ -7,11 +7,6 @@ const userSchema = mongoose.Schema(
       required: [true],
       unique: true,
     },
-    telegramId: {
-      type: String,
-      required: [true],
-      unique: true,
-    },
     username: {
       type: String,
       required: [true],
