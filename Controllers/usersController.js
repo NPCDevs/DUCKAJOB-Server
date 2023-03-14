@@ -6,7 +6,7 @@ class userController {
 
     if (!wallet || !userId) return res.status(500).send({ error: 'N' });
 
-    const isUser = await User.findOne({ wallet: wallet, telegramId: userId });
+    const isUser = await User.findOne({ wallet: wallet });
     if (!isUser) {
       console.log(wallet, userId);
       // return res.redirect('http://127.0.0.1:5173/register');
