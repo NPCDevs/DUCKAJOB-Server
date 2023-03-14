@@ -1,12 +1,19 @@
 const User = require('../Models/userModel');
 
+const getUserByWallet = async (wallet) => {
+  const user = await User.findOne({ wallet });
+  return !!user;
+};
+
 class userController {
   async authUser(req, res) {
     const { wallet } = req.body;
 
     if (!wallet) return res.status(500).send({ error: 'N' });
 
-    const isUser = await User.findOne({ wallet: wallet });
+    // const isUser = await User.findOne({ wallet: wallet });
+    const isUser = await getUserByWallet(wallet);
+
     if (!isUser) {
       // return res.redirect('http://127.0.0.1:5173/register');
       console.log('user need to register');
@@ -32,14 +39,6 @@ class userController {
   }
 
   async createUser() {}
-
-  async getUserByWallet() {}
-
-  async login() {
-    const user = await this.getUserByWallet();
-  }
-
-  async setDetails() {}
 }
 
 module.exports = new userController();
