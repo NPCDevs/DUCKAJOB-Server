@@ -16,9 +16,23 @@ class jobController {
     res.status(200).send({ msg: 'whateva' });
   }
   async getAll(req, res) {
-    const jobs = await Job.find();
-
-    return res.status(200).send({ data: jobs });
+    const jobs = await Job.find().exec(function (err, jobs) {
+      if (err) {
+        return res.status(500).json({ error: err });
+      }
+      Application.find({ jobId: { $in: jobs.map((job) => job._id) } })
+        .populate('jobId')
+        .exec(function (err, applications) {
+          if (err) {
+            return res.status(500).json({ error: err });
+          }
+          const jobsWithApplications = jobs.map((job) => ({
+            ...job.toObject(),
+            applications: applications.filter((app) => app.jobId.equals(job._id)),
+          }));
+          return res.status(200).json({ data: jobsWithApplications });
+        });
+    });
   }
 
   async getJobDetails(req, res) {
