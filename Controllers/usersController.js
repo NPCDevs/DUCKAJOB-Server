@@ -5,6 +5,11 @@ const getUserByWallet = async (wallet) => {
   return !!user;
 };
 
+const getUserById = async (id) => {
+  const user = await User.findById(id);
+  return user;
+};
+
 class userController {
   async authUser(req, res) {
     const { wallet } = req.body;
@@ -38,7 +43,11 @@ class userController {
     }
   }
 
-  async createUser() {}
+  async getUser(req, res) {
+    const { userId } = req.params;
+    const user = await getUserById(userId);
+    return res.status(200).send({ user });
+  }
 }
 
 module.exports = new userController();
