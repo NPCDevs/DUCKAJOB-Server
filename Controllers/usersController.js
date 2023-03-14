@@ -16,11 +16,9 @@ class userController {
 
     if (!wallet) return res.status(500).send({ error: 'N' });
 
-    // const isUser = await User.findOne({ wallet: wallet });
     const isUser = await getUserByWallet(wallet);
 
     if (!isUser) {
-      // return res.redirect('http://127.0.0.1:5173/register');
       console.log('user need to register');
       return res.status(200).json({ success: true, redirectUrl: '/register' });
     } else {
