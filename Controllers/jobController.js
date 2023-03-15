@@ -19,6 +19,7 @@ class jobController {
 
   async getAll(req, res) {
     const jobs = await Job.find()
+      .sort([['_id', -1]])
       .populate('owner')
       .populate('tags')
       .exec(function (err, jobs) {
