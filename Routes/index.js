@@ -22,6 +22,6 @@ router.get('/tags', tagsController.search);
 router.use('/users', userRouter);
 router.use('/jobs', jobRouter);
 router.use('/contracts', contractRouter);
-router.use('/application', applicationRouter);
+router.use('/applications', applicationRouter);
 
 module.exports = router;
