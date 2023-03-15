@@ -8,7 +8,7 @@ class jobController {
     if (!title || !description || !budget) return res.status(500).send({ err: 'err' });
 
     try {
-      const newJob = await new Job({ title, description, budget, owner });
+      const newJob = await new Job({ title, description, budget, owner, tags });
       newJob.save();
 
       res.status(200).send({ success: true, redirectUrl: `/jobs/${newJob._id}` });
