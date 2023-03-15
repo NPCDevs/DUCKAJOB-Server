@@ -17,19 +17,19 @@ connectDB();
 
 const token = process.env.BOT_TOKEN;
 
-const bot = new TelegramApi(token, { polling: true });
+// const bot = new TelegramApi(token, { polling: true });
 
-bot.on('message', (msg) => {
-  const text = msg.text;
-  const chatId = msg.chat.id;
-  switch (text) {
-    case '/help':
-      bot.sendMessage(chatId, `Text for help command`);
-      break;
-    default:
-      break;
-  }
-});
+// bot.on('message', (msg) => {
+//   const text = msg.text;
+//   const chatId = msg.chat.id;
+//   switch (text) {
+//     case '/help':
+//       bot.sendMessage(chatId, `Text for help command`);
+//       break;
+//     default:
+//       break;
+//   }
+// });
 
 server.use('/', require('./Routes/index'));
 

@@ -2,7 +2,7 @@ const User = require('../Models/userModel');
 
 const getUserByWallet = async (wallet) => {
   const user = await User.findOne({ wallet });
-  return !!user;
+  return user;
 };
 
 const getUserById = async (id) => {
@@ -45,6 +45,16 @@ class userController {
     const { userId } = req.params;
     try {
       const user = await getUserById(userId);
+      return res.status(200).send({ user });
+    } catch (error) {
+      return res.status(404).send({ user: null });
+    }
+  }
+
+  async getUserInfoByWallet(req, res) {
+    const { wallet } = req.params;
+    try {
+      const user = await getUserByWallet(wallet);
       return res.status(200).send({ user });
     } catch (error) {
       return res.status(404).send({ user: null });
