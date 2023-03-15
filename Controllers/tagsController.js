@@ -8,9 +8,9 @@ class tagsController {
   async search(req, res) {
     // console.log(req.query.name)
     const { name } = req.query;
-    console.log(name);
+    // console.log(name);
     const tags = await Tag.find({ name: { $regex: new RegExp(name, 'i') } });
-    console.log(tags);
+    // console.log(tags);
     res.status(200).send({ data: tags });
   }
 

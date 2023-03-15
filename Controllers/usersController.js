@@ -6,7 +6,7 @@ const getUserByWallet = async (wallet) => {
 };
 
 const getUserById = async (id) => {
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate('skills');
   return user;
 };
 
@@ -20,10 +20,10 @@ class userController {
 
     if (!isUser) {
       console.log('user need to register');
-      return res.status(200).json({ success: true, redirectUrl: '/register' });
+      return res.status(200).json({ success: true, redirectUrl: '/register', code: 1 });
     } else {
       console.log('user is in base, just use the app');
-      return res.status(200).json({ success: true, redirectUrl: '/jobs' });
+      return res.status(200).json({ success: true, redirectUrl: '/jobs', code: 0 });
     }
   }
 
@@ -32,7 +32,7 @@ class userController {
       const { wallet, username, bio, skills, links } = req.body;
       if (!wallet || !username || !bio) return res.status(500).send({ error: 'N' });
 
-      const newUser = new User({ wallet, username, bio });
+      const newUser = new User({ wallet, username, bio, skills });
 
       newUser.save();
       return res.status(200).send({ success: true, data: newUser });
@@ -59,6 +59,14 @@ class userController {
     } catch (error) {
       return res.status(404).send({ user: null });
     }
+  }
+
+  async getTags(req, res) {
+    const { userId } = req.params;
+    const user = await getUserById(userId);
+    // console.log(user.skills);
+    // console.log(userId);
+    return res.status(200).send({ data: user.skills });
   }
 }
 

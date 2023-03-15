@@ -18,6 +18,11 @@ const userSchema = mongoose.Schema(
     links: {
       type: Array,
     },
+    skills: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'Tag',
+      required: [true],
+    },
   },
   {
     timestamps: true,
