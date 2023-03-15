@@ -45,7 +45,7 @@ class jobController {
     if (!jobId) return res.status(404);
     const job = await Job.findById(jobId).populate('owner').populate('tags');
 
-    const applications = await Application.find({ jobId });
+    const applications = await Application.find({ jobId }).populate('userId');
 
     return res.status(200).send({ job, applications });
   }
