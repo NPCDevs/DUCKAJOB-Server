@@ -7,11 +7,6 @@ const userSchema = mongoose.Schema(
       required: [true],
       unique: true,
     },
-    telegramId: {
-      type: String,
-      required: [true],
-      unique: true,
-    },
     username: {
       type: String,
       required: [true],
@@ -22,6 +17,11 @@ const userSchema = mongoose.Schema(
     },
     links: {
       type: Array,
+    },
+    skills: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: 'Tag',
+      required: [true],
     },
   },
   {
