@@ -23,7 +23,7 @@ const contractSchema = mongoose.Schema(
     contract_address: {
       type: String,
       required: [true],
-      unique: true,
+      // unique: true,
     },
     seller_wallet: {
       type: String,
