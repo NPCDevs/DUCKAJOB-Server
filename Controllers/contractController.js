@@ -9,6 +9,7 @@ class contractController {
       buyerId,
       sellerId,
       contractAddress,
+      contractLink,
       seller_wallet,
       buyer_wallet,
       disputeResolver_wallet,
@@ -54,6 +55,7 @@ class contractController {
       const newContract = await new Contract({
         job: jobId,
         buyer: buyerId,
+        contractLink,
         seller: sellerId,
         contract_address: contractAddress,
         seller_wallet,

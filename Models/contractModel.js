@@ -25,6 +25,9 @@ const contractSchema = mongoose.Schema(
       required: [true],
       // unique: true,
     },
+    contractLink: {
+      type: String,
+    },
     seller_wallet: {
       type: String,
       required: [true],

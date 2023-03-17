@@ -66,7 +66,7 @@ class userController {
     const user = await getUserById(userId);
     // console.log(user.skills);
     // console.log(userId);
-    return res.status(200).send({ data: user.skills });
+    return res.status(200).send({ data: user?.skills || [] });
   }
 }
 
