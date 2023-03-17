@@ -28,6 +28,16 @@ class applicationController {
       res.status(500).send({ data: null });
     }
   }
+
+  async getApplicationByUser(req, res) {
+    const { userId } = req.params;
+    try {
+      const application = await Application.find({ userId }).populate('jobId');
+      res.status(200).send({ data: application });
+    } catch (error) {
+      res.status(500).send({ data: null });
+    }
+  }
 }
 
 module.exports = new applicationController();

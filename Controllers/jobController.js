@@ -50,6 +50,13 @@ class jobController {
 
     return res.status(200).send({ job, applications });
   }
+
+  async getJobsDetailsByUser(req, res) {
+    const { userId } = req.params;
+    const jobs = await Job.find({ owner: userId }).populate('tags').populate('owner');
+    console.log(jobs);
+    return res.status(200).send({ jobs });
+  }
 }
 
 module.exports = new jobController();

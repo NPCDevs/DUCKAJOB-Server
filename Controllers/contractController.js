@@ -8,6 +8,7 @@ class contractController {
       jobId,
       buyerId,
       sellerId,
+      contractAddress,
       seller_wallet,
       buyer_wallet,
       disputeResolver_wallet,
@@ -18,6 +19,7 @@ class contractController {
       !jobId ||
       !buyerId ||
       !sellerId ||
+      !contractAddress ||
       !seller_wallet ||
       !buyer_wallet ||
       !disputeResolver_wallet ||
@@ -53,7 +55,7 @@ class contractController {
         job: jobId,
         buyer: buyerId,
         seller: sellerId,
-        contract_address: '123',
+        contract_address: contractAddress,
         seller_wallet,
         buyer_wallet,
         disputeResolver_wallet,
@@ -102,7 +104,9 @@ class contractController {
     // if (!contractId) return res.status(500).send({ err: 'err' });
 
     try {
-      const contract = await Contract.find({ $or: [{ buyer: userId }, { seller: userId }] })
+      // const contract = await Contract.find({ $or: [{ buyer: userId }, { seller: userId }] })
+      const contract = await Contract.find({ seller: userId })
+
         .populate('job')
         .populate('buyer')
         .populate('seller');

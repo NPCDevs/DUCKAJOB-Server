@@ -9,4 +9,7 @@ applicationRouter.post('/apply', applicationController.apply);
 // get application by job and user
 applicationRouter.get('/job/:jobId/user/:userId', applicationController.getApplicationByJobAndUser);
 
+//
+applicationRouter.get('/user/:userId', applicationController.getApplicationByUser);
+
 module.exports = applicationRouter;

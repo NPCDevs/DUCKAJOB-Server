@@ -12,4 +12,7 @@ jobRouter.post('/create', jobController.create);
 // get all jobs
 jobRouter.get('/', jobController.getAll);
 
+// get all jobs from user
+jobRouter.get('/user/:userId', jobController.getJobsDetailsByUser);
+
 module.exports = jobRouter;
