@@ -84,6 +84,31 @@ class contractController {
     }
   }
 
+  async getContractStatus(req, res) {
+    const { contractId } = req.params;
+    if (!contractId) return res.status(500).send({ err: 'err' });
+
+    try {
+      const contract = await Contract.findById(contractId);
+      res.status(200).send({ status: contract.contract_status });
+    } catch (error) {
+      res.status(500).send({ err: 'err' });
+    }
+  }
+
+  async setContractStatus(req, res) {
+    const { contractId } = req.params;
+
+    const { status } = req.body;
+
+    try {
+      const contract = await Contract.findByIdAndUpdate(contractId, { contract_status: status });
+      res.status(200).send({ msg: 'success', status });
+    } catch (error) {
+      res.status(500).send({ err: 'err' });
+    }
+  }
+
   async getContractDetailsById(req, res) {
     const { contractId } = req.params;
     if (!contractId) return res.status(500).send({ err: 'err' });
