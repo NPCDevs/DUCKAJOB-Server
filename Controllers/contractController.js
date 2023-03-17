@@ -129,8 +129,8 @@ class contractController {
     // if (!contractId) return res.status(500).send({ err: 'err' });
 
     try {
-      // const contract = await Contract.find({ $or: [{ buyer: userId }, { seller: userId }] })
-      const contract = await Contract.find({ seller: userId })
+      const contract = await Contract.find({ $or: [{ buyer: userId }, { seller: userId }] })
+        // const contract = await Contract.find({ seller: userId })
 
         .populate('job')
         .populate('buyer')
